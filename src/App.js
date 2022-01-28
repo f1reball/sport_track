@@ -18,6 +18,7 @@ function App() {
 
   const [dataset, setDataset] = useState([]);
   const [students, setStudents] = useState([]);
+  const [studentNameID, setStudentNameID] = useState([]);
   
 
   const ref = firebase.firestore().collection("Events");
@@ -26,12 +27,15 @@ function App() {
 
   function getDataStudents() {
     stu.onSnapshot((querySnapshot) => {
-      const col = [];
+      const nameID = [];
+      const nameArray = [];
       querySnapshot.forEach((doc) => {
-        col.push(doc.data());
+        const p = doc.data();
+        p.ID = doc.id;
+        nameID.push(p);
+        nameArray.push(p);
       });
-      setStudents(col);
-      console.log(col);
+      setStudents(nameArray);
     })
   }
 

@@ -1,11 +1,21 @@
 .Content {
     height: 100vh;
-    display: flex;   
+    display: flex;
+    justify-content: center;
+    align-items: center;   
 }
 
 .Students {
     width: calc(100vw - 250px);
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dataTest {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
