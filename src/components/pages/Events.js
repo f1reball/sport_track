@@ -6,7 +6,7 @@ class Events extends Component {
         return (
             <div className="Events">
                 <h1>
-                    Hello IM EVEENTS
+                    Events
                 </h1>
             </div>
         )
