@@ -13,6 +13,7 @@ class Events extends Component {
                 <div className="Events">
                     <h1>
                         Events
+                        {this.props.data}
                     </h1>
                 </div>
             </div>

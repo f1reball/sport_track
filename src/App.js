@@ -17,15 +17,27 @@ import firebase from './firebase';
 function App() {
 
   const [dataset, setDataset] = useState([]);
+  const [students, setStudents] = useState([]);
   
 
   const ref = firebase.firestore().collection("Events");
 
+  const stu = firebase.firestore().collection("Students");
+
+  function getDataStudents() {
+    stu.onSnapshot((querySnapshot) => {
+      const col = [];
+      querySnapshot.forEach((doc) => {
+        col.push(doc.data());
+      });
+      setStudents(col);
+      console.log(col);
+    })
+  }
 
 
-  function getData() {
+  function getDataEvents() {
     ref.onSnapshot((querySnapshot) => {
-      console.log(querySnapshot)
       const Events = [];
       const items = [];
       querySnapshot.forEach((doc) => {
@@ -33,7 +45,7 @@ function App() {
         items.push(doc.data());
       });
       setDataset(items[0].Name);
-      console.log(Events);
+      //console.log(Events);
     })
   }
 
@@ -41,7 +53,8 @@ function App() {
 
 
   useEffect(() => {
-    getData();
+    getDataStudents();
+    getDataEvents();
   }, []);
 
 
@@ -54,8 +67,8 @@ function App() {
 
             <Routes>
               <Route exact path='/' element={ <Home /> } />
-              <Route exact path='/students' element={<Students data={dataset}/>} />
-              <Route exact path='/events' element={ <Events /> } />
+              <Route exact path='/students' element={<Students studentList={students}/>} />
+              <Route exact path='/events' element={<Events data={dataset}/> } />
               <Route exact path='/rankings' element={<Rankings />} />
               <Route exact path='/help' element={<Help />} />
               <Route path='*' element={<Error />} />

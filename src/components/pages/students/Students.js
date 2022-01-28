@@ -11,9 +11,9 @@ class Students extends Component {
             <div className="Content">
                 <SideBar />
                 <div className="Students">
-                    <h1>
-                        {this.props.data}
-                    </h1>
+                    <h1>Students</h1>
+
+
                 </div>
             </div>
 
