@@ -1,0 +1,11 @@
+.Content {
+    height: 100vh;
+    display: flex;   
+}
+
+.Home {
+    width: calc(100vw - 250px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

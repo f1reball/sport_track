@@ -1,8 +1,21 @@
 .sidebar {
-    background-color: #2f4050;
+    background-color: #36373f;
     height: 100%;
     width: 250px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 10px;
+}
+
+.sidebarSpacer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e3e7fd;
+    margin-top: 20px;
+    padding-bottom: 25px;
+}
+
+.sidebarSpacer h1 {
+    font-weight: 300;
 }
 
 .nav-links {
@@ -12,17 +25,25 @@
     flex-direction: column;
     text-decoration: none;
     padding: 0;
-    padding-top: 30px;
+}
+
+.active {
+    background-color: #43454e;
+}
+
+.active li {
+    color: #e3e7fd;
 }
 
 ul {
     list-style: none;
-    
 }
 
 li {
-    color: #f2f2f2;
+    color: #7c7d85;
     text-decoration: none;
+    font-weight: 400;
+    padding-left: 45px;
     
 }
 
@@ -31,13 +52,25 @@ a {
     width: 250px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     height: 60px;
     transition: 0.3s;
 }
 
 a:hover {
-    background-color: #1c2730;
+    background-color: #43454e;
     transition: 0.3s;
 
+}
+
+.iconContainer {
+    width: 200px;
+    display: flex;
+    justify-content: left;
+    
+}
+
+.iconAlign {
+    vertical-align: center;
+    width: 40px;
 }

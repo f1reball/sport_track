@@ -6,15 +6,13 @@
 
 * { margin: 0; }
 
-.content {
-  display: flex;
-  height: 100vh;
-}
-
 .sidebarContainer {
   width: 250px;
 }
 
 .routerContainer {
   width: calc(100vw - 250px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
