@@ -1,18 +1,50 @@
+import React, { useEffect, useState } from 'react';
 
 import './App.css';
 
-import SideBar from './components/sidebar/sidebar.js';
 
-import Home from './components/pages/Home.js';
-import Events from './components/pages/Events.js';
-import Help from './components/pages/Help.js';
-import Students from './components/pages/Students.js';
-import Rankings from './components/pages/Rankings.js';
+import Home from './components/pages/home/Home.js';
+import Events from './components/pages/events/Events.js';
+import Help from './components/pages/help/Help.js';
+import Students from './components/pages/students/Students.js';
+import Rankings from './components/pages/rankings/Rankings.js';
+import Error from './components/pages/404/Error.js';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
+import firebase from './firebase';
 
 function App() {
+
+  const [dataset, setDataset] = useState([]);
+  
+
+  const ref = firebase.firestore().collection("Events");
+
+
+
+  function getData() {
+    ref.onSnapshot((querySnapshot) => {
+      console.log(querySnapshot)
+      const Events = [];
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        Events.push(doc.id);
+        items.push(doc.data());
+      });
+      setDataset(items[0].Name);
+      console.log(Events);
+    })
+  }
+
+  
+
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+
   return (
 
 
@@ -20,22 +52,14 @@ function App() {
 
       <BrowserRouter>
 
-        <div className='content'>
-
-          <div className='sidebarContainer'>
-            <SideBar />
-          </div>
-  
-          <div className='routerContainer'>
             <Routes>
-              <Route path='/' element={ <Home /> } />
-              <Route path='/students' element={<Students />} />
-              <Route path='/events' element={ <Events /> } />
-              <Route path='/rankings' element={<Rankings />} />
-              <Route path='/help' element={<Help />} />
+              <Route exact path='/' element={ <Home /> } />
+              <Route exact path='/students' element={<Students data={dataset}/>} />
+              <Route exact path='/events' element={ <Events /> } />
+              <Route exact path='/rankings' element={<Rankings />} />
+              <Route exact path='/help' element={<Help />} />
+              <Route path='*' element={<Error />} />
             </Routes>
-          </div>
-        </div>
 
       </BrowserRouter>
       </div>
